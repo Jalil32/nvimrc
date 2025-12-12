@@ -1,10 +1,12 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		lazy = false,
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("mason-lspconfig").setup({
@@ -15,8 +17,8 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		lazy = false,
 		dependencies = { "williamboman/mason-lspconfig.nvim" },
-		event = "BufReadPre",
 		config = function()
 			local on_attach = function(_, bufnr)
 				local map = function(keys, func)
@@ -28,6 +30,7 @@ return {
 				map("<leader>rn", vim.lsp.buf.rename)
 				map("<leader>ca", vim.lsp.buf.code_action)
 				map("<leader>d", vim.diagnostic.open_float)
+				map("<leader>f", function() vim.lsp.buf.format({ async = true }) end)
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -51,11 +54,6 @@ return {
 			})
 
 			vim.lsp.enable({ "gopls", "pyright", "ts_ls", "lua_ls", "biome" })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				callback = function()
-					vim.lsp.buf.format()
-				end,
-			})
 		end,
 	},
 }
