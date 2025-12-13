@@ -44,6 +44,11 @@ opt.completeopt = "menuone,noselect"
 -- Line wrapping behaviour
 opt.whichwrap:append("b,s,<,>,[,],h,l")
 opt.shortmess:append("c")
+opt.guicursor = {
+	"n-v-c:block-blinkon250-blinkoff250",
+	"i-ci-ve:ver25-blinkon250-blinkoff250",
+	"r-cr-o:hor20-blinkon250-blinkoff250",
+}
 
 -- Netrw
 vim.g.netrw_banner = 0
