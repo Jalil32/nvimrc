@@ -83,3 +83,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.format()
 	end,
 })
+
+-- Set colors for TMUX
+vim.o.termguicolors = true
+
+-- Disable legacy sqlcomplete
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "sql",
+	callback = function()
+		vim.bo.omnifunc = ""
+	end,
+})
+
+-- Stop auto comment on next line
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "r", "o" })
+	end,
+})
