@@ -1,0 +1,4 @@
+-- macOS-only overrides.
+-- lua/config/options.lua and lua/config/keymaps.lua hold settings shared
+-- across every machine; put anything mac-specific (GUI font, Cmd-key maps,
+-- clipboard quirks, mac-only plugins) here.
