@@ -2,14 +2,14 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	lazy = false,
-	event = "BufReadPost",
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			ensure_installed = {
 				"lua",
 				"python",
 				"typescript",
 				"javascript",
+				"tsx",
 				"c",
 				"cpp",
 				"rust",
@@ -19,10 +19,16 @@ return {
 				"html",
 				"css",
 			},
-			sync_install = false,
 			auto_install = true,
-			highlight = { enable = true },
-			indent = { enable = true },
+		})
+
+		vim.treesitter.language.register("tsx", "typescriptreact")
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "lua", "python", "rust", "bash", "json", "yaml" },
+			callback = function()
+				vim.treesitter.start()
+			end,
 		})
 	end,
 }
