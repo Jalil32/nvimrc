@@ -11,6 +11,12 @@ return {
 		{ "<leader>ps", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end },
 	},
 	config = function()
+		require("telescope").setup({
+			defaults = {
+				border = true,
+				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			},
+		})
 		require("telescope").load_extension("fzf")
 	end,
 }

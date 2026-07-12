@@ -32,6 +32,9 @@ opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 
+-- Floating window borders (LSP hover, signature help, diagnostics, etc.)
+opt.winborder = "single"
+
 -- System
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
@@ -60,6 +63,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 		vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
@@ -124,4 +128,7 @@ vim.diagnostic.config({
 	signs = true, -- Show diagnostic signs (error, warning, etc.)
 	underline = true, -- Underline the lines with errors
 	update_in_insert = true, -- Update diagnostics while typing
+	float = {
+		border = "single",
+	},
 })
